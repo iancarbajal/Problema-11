@@ -20,39 +20,39 @@ public class EjecutableEmpTransp {
         
         resp=una.alta("Ford", "hshssh", "6666", 2200, 150, true, true);
         if(resp)
-             System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+            System.out.println("Alta exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         resp=una.alta("Ford", "383838", "3262", 20202, 123, true, true);
         if(resp)
-             System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+            System.out.println("Alta exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         resp=una.alta("Mercedes", "sjsjsj", "39393", 30000, 120, true, false);
         if(resp)
              System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         resp=una.alta("Mercedes", "827363", "1330", 5000, 123, true);
         if(resp)
-             System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+            System.out.println("Alta exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         resp=una.alta("Mercedes", "3839393", "2622", 7500, 200, false);
         if(resp)
              System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         resp=una.alta("Volvo", "3494vc", "38383", 10000, 150, true);
         if(resp)
-             System.out.println("Alta exitosa");
-                else
-                    System.out.println("Alta NO exitosa");
+            System.out.println("Alta exitosa");
+        else
+            System.out.println("Alta NO exitosa");
         
         info=una.camTuristaDisp(100, 2000);
         System.out.println(info);
@@ -61,10 +61,11 @@ public class EjecutableEmpTransp {
         System.out.println(info);
         
         resp=una.posibleRentaEscolar(100, 2);
+        
         if(resp)
-             System.out.println("Si es posible");
-                else
-                    System.out.println("No es posible");
+            System.out.println("Si es posible");
+        else
+            System.out.println("No es posible");
         
         info=una.estaDisponible("1330");
         System.out.println(info);

@@ -22,9 +22,8 @@ public class EmpTransp {
     }
     
     public EmpTransp(String nombre) {
+        this();
         this.nombre = nombre;
-        this.totCam = 0;
-        this.camiones = new Camion[MAX_CA];
     }
 
     public String getNombre() {
@@ -34,51 +33,42 @@ public class EmpTransp {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public boolean alta(String marca, String numMotor, String placas, double costoCamion, int totalPasaj,boolean lugarProyecto){
-        int i;
-        boolean resp;
-        Escolar uno;
-        uno= new Escolar(marca, numMotor, placas, costoCamion, totalPasaj, lugarProyecto);
-        i=0;
-        if(totCam<MAX_CA){
-            while(i<totCam+1 && camiones[i]!=null)
-                 i++;
-            if(i<totCam+1){
-                 resp=true;
-                 totCam++;
-                 camiones[i]=uno;
-            }
-            else
-                resp=false;
+
+    public int getTotCam() {
+        return totCam;
+    }
+    public String getUnCamion(int pos){
+        String r="Error";
+        Camion otro;
+        if(pos<MAX_CA && pos>=0){
+            otro=camiones[pos];
+            r=otro.toString();
         }
-        else
-            resp=false;
         
+        return r;
+        
+    }
+    public boolean alta(String marca, String numMotor, String placas, double costoCamion, int totalPasaj,boolean lugarProyecto){
+        boolean resp=false;
+        
+        if(totCam<MAX_CA){
+            camiones[totCam]=new Escolar(marca, numMotor, placas, costoCamion, totalPasaj, lugarProyecto);
+            totCam++;
+            resp=true;
+        }
         return resp;
     }
     
     public boolean alta(String marca, String numMotor, String placas, double costoCamion,int totalPasaj,boolean asientoCama, boolean serviBar){
-        int i;
-        boolean resp = false;
-        Turismo uno;
-        uno= new Turismo(marca, numMotor, placas, costoCamion, totalPasaj, asientoCama, serviBar);
-        i=0;
-        if(totCam<MAX_CA){
-            while(i<totCam+1 && camiones[i]!=null)
-                 i++;
-            if(i<totCam+1){
-                 resp=true;
-                 totCam++;
-                 camiones[i]=uno;
-            }
-            else
-                resp=false;
-        }
-        else
-            resp=false;
-        
-        return resp;
+       boolean r=false;
+       
+       if(totCam<MAX_CA){
+           camiones[totCam]=new Turismo(marca, numMotor, placas, costoCamion, totalPasaj, asientoCama, serviBar);
+           totCam++;
+           r=true;
+       }
+       
+       return r;
     }
     
     
@@ -130,37 +120,42 @@ public class EmpTransp {
         }
         else
             resp="El camion no esta disponible";
+        
         return resp;
         
         }
     
-     public String placasDisponibles(){
-    StringBuilder c= new StringBuilder();
-    int i;
-    c.append("Placas : \n");
-    for(i=0;i<totCam;i++){
-        if(camiones[i] instanceof Escolar)
-            if(((Escolar)camiones[i]).getTotalPasaj()>20 && ((Escolar)camiones[i]).isLugarProyecto()==true)
-                c.append(camiones[i].getPlacas()+"\t");
-    }
-    if(c.toString().isEmpty())
+    public String placasDisponibles(){
+        StringBuilder c= new StringBuilder();
+        int i;
+        
+        c.append("Placas : \n");
+        for(i=0;i<totCam;i++){
+            if(camiones[i] instanceof Escolar)
+                if(((Escolar)camiones[i]).getTotalPasaj()>20 && ((Escolar)camiones[i]).isLugarProyecto()==true)
+                    c.append(camiones[i].getPlacas()+"\t");
+        }
+        if(c.toString().isEmpty())
             c.append("No hay camiones disponibles");
-    return c.toString();
-}
+        
+        return c.toString();
+    }
      
      public int camionesTuristaPorMarcaPrecio(String marca, double costo, double km){
-         int cuantos, i;
-         cuantos=0;
-         for(i=0;i<totCam;i++){
-        if(camiones[i] instanceof Turismo && camiones[i].getMarca().equals(marca))
-             if(((Turismo)camiones[i]).isServiBar() && ((Turismo)camiones[i]).calculaCostoServicio(km)<costo)
-                 cuantos++;
+        int cuantos, i;
+        cuantos=0;
+        
+        for(i=0;i<totCam;i++){
+            if(camiones[i] instanceof Turismo && camiones[i].getMarca().equals(marca)){
+                if(((Turismo)camiones[i]).isServiBar() && ((Turismo)camiones[i]).calculaCostoServicio(km)<costo)
+                    cuantos++;
+            }
          }
-         return cuantos; 
-     }
+        return cuantos; 
+    }
      
      
-        }
+}
         
    
     
